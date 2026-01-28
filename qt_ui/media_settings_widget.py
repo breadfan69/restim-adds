@@ -96,6 +96,26 @@ class MediaSettingsWidget(QtWidgets.QWidget, Ui_MediaSettingsWidget, metaclass=_
         self.add_funscript_button.clicked.connect(self.open_add_funscripts_dialog)
         self.additional_search_paths_button.clicked.connect(self.open_search_paths_dialog)
         self.reload_scripts_button.clicked.connect(self.reload_scripts)
+
+        # Output Offset Widget logic
+
+        self.output_offset_spinbox = self.findChild(QtWidgets.QDoubleSpinBox, "output_offset_spinbox")
+        if self.output_offset_spinbox:
+            # Load from settings
+            self._output_offset = settings.media_sync_output_offset.get()
+            self.output_offset_spinbox.setValue(self._output_offset)
+            self.output_offset_spinbox.valueChanged.connect(self.on_output_offset_changed)
+        else:
+            self._output_offset = 0.0
+
+
+    def on_output_offset_changed(self, value):
+        self._output_offset = value
+        settings.media_sync_output_offset.set(value)
+
+    def get_output_offset(self):
+        return self._output_offset
+
         self.media_index_changed()
 
     def open_add_funscripts_dialog(self):

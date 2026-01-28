@@ -18,7 +18,7 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
 from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QFormLayout,
     QFrame, QHBoxLayout, QHeaderView, QLabel,
     QLineEdit, QPushButton, QSizePolicy, QSpacerItem,
-    QVBoxLayout, QWidget)
+    QVBoxLayout, QWidget, QDoubleSpinBox)
 
 from qt_ui.widgets.table_view_with_combobox import TreeViewWithComboBox
 import restim_rc
@@ -128,7 +128,24 @@ class Ui_MediaSettingsWidget(object):
         self.horizontalLayout_2.addItem(self.horizontalSpacer)
 
 
+
         self.verticalLayout.addWidget(self.widget_21)
+
+        # Output Offset Widget
+        self.output_offset_layout = QHBoxLayout()
+        self.output_offset_layout.setObjectName(u"output_offset_layout")
+        self.output_offset_label = QLabel(MediaSettingsWidget)
+        self.output_offset_label.setObjectName(u"output_offset_label")
+        self.output_offset_label.setText("Media Offset:")
+        self.output_offset_spinbox = QDoubleSpinBox(MediaSettingsWidget)
+        self.output_offset_spinbox.setObjectName(u"output_offset_spinbox")
+        self.output_offset_spinbox.setMinimum(-2.0)
+        self.output_offset_spinbox.setMaximum(2.0)
+        self.output_offset_spinbox.setSingleStep(0.01)
+        self.output_offset_spinbox.setValue(0.0)
+        self.output_offset_layout.addWidget(self.output_offset_label)
+        self.output_offset_layout.addWidget(self.output_offset_spinbox)
+        self.verticalLayout.addLayout(self.output_offset_layout)
 
 
         self.retranslateUi(MediaSettingsWidget)
